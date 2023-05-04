@@ -1,0 +1,41 @@
+/****************
+
+    CODE
+
+****************/
+
+
+
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) 
+    {
+         for(int i = 0;i < nums.size();i++)
+        {
+            for(int j = i + 1;j < nums.size();j++)
+            {
+                // j = i + 1; no need to check back elements it covers in i;
+                
+                if ((nums[i] + nums[j]) == target){
+                
+                    // Check sum == target or not
+                    
+                    return{i,j};
+                }                
+            }
+        }
+        return{};
+    }
+};
+
+
+
+/****************
+
+    RESULT
+
+****************/
+
+Input: nums = [2,7,11,15], target = 9
+Output: [0,1]
+Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
