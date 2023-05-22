@@ -1,0 +1,60 @@
+
+Brute Force Solution:
+Intuition:
+Convert the integer to a string and check if the string is equal to its reverse.
+
+Approach:
+1. Convert the integer to a string using to_string() method.
+2. Reverse the string using the reverse() method.
+3. Compare the original and reversed strings to check if they are equal.
+4. If they are equal, return true. Otherwise, return false.
+
+Time Complexity:
+O(n), where n is the number of digits in the integer.
+
+Space Complexity:
+O(n), where n is the number of digits in the integer.
+
+
+class Solution {
+public:
+    bool isPalindrome(int x) {
+        string s = to_string(x);
+        string t = s;
+        reverse(t.begin(), t.end());
+        return s == t;
+    }
+};
+
+
+
+
+
+1. Check if the integer is negative or ends with a zero. If it is, return false.
+2. Initialize a new integer half to 0.
+3. While the original integer x is greater than half, extract the last digit of x and add it to half by multiplying half by 10 and adding the last digit of x.
+4. If the length of x is odd, we need to remove the middle digit from half. To do this, we can simply divide half by 10.
+5. Check if x is equal to half or half divided by 10.
+6. If they are equal, return true. Otherwise, return false.
+
+Time Complexity:
+O(log n), where n is the value of the integer.
+
+Space Complexity:
+O(1), as we only need to store two integers, x and half.
+
+
+class Solution {
+public:
+    bool isPalindrome(int x) {
+        if (x < 0 || (x != 0 && x % 10 == 0)) {
+            return false;
+        }
+        int half = 0;
+        while (x > half) {
+            half = half * 10 + x % 10;
+            x /= 10;
+        }
+        return x == half || x == half / 10;
+    }
+};
