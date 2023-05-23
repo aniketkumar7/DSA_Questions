@@ -1,0 +1,47 @@
+Intuition :
+Take the head of a singly-linked list as input and reverses the list.
+
+Approach :
+1. Check if the head is NULL. If it is, it means the list is empty, so we return the head as it is.
+
+2. Create two pointers, "current" and "previous," and initialize "current" with the head of the list and "previous" with NULL.
+
+3. Enter a loop that continues until "current" becomes NULL.
+
+4. Inside the loop, create a temporary pointer, "temp," and store the next node of the current node.
+
+5. Set the "next" pointer of the current node to the previous node, effectively reversing the pointer direction.
+
+6. Update the "previous" pointer to the current node.
+
+7. Update the "current" pointer to the next node (stored in "temp") for the next iteration.
+
+8. Once the loop finishes, all the pointers have been reversed, and the "previous" pointer will be pointing to the new head of the reversed list.
+
+9. Return the "previous" pointer as the new head of the reversed list.
+
+Complexity
+Time complexity: O(n), where n is the number of nodes in the linked list, as we need to traverse the entire list once.
+
+Space complexity: O(1) as we are using a constant amount of extra space to store the pointers.
+
+
+
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        if(head==NULL){
+            return head;
+        }
+        ListNode* current=head;
+        ListNode* previous=NULL;
+        while(current!=NULL){
+            ListNode* temp = current->next;
+            current->next=previous;
+            previous=current;
+            current=temp;
+        }
+        return previous;
+    }
+};
+
