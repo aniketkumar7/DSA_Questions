@@ -1,0 +1,34 @@
+Intuition:
+
+The given code is generating Pascal's triangle up to a given number of rows. Pascal's triangle is a triangular array of numbers where each number is the sum of the two numbers directly above it. The first and last elements of each row are always 1.
+
+Approach:
+
+1. Create a 2D vector r to store the Pascal's triangle.
+2. Resize each row of r according to the row number.
+3. Initialize the first and last elements of each row as 1.
+4. For the elements in between (excluding the first and last), calculate their values by adding the corresponding elements from the previous row.
+5. Return the resulting Pascal's triangle.
+
+
+Complexity:
+
+The time complexity of this code is O(numRows^2) because we need to fill each element of the triangle.
+The space complexity is O(numRows^2) because we are storing all the elements of the triangle in the r vector.
+
+
+class Solution {
+public:
+    vector<vector<int>> generate(int numRows) {
+        vector<vector<int>> r(numRows);
+        for(int i=0;i<numRows;i++){
+            r[i].resize(i + 1);
+            r[i][0]=1;
+            r[i][i]=1;
+            for(int j=1;j<i;j++){
+                r[i][j]=r[i-1][j-1]+r[i-1][j];
+            }
+        }
+        return r;
+    }
+};
