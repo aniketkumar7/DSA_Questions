@@ -1,0 +1,62 @@
+
+Intuition:
+ 
+The problem aims to find the majority element in a given vector nums, where the majority element appears more than n/2 times (n is the size of nums).
+The provided code attempts to solve this by sorting the vector and then iterating through it to count the occurrences of each element.
+
+Approach:
+
+1. The provided code starts by sorting the nums vector in ascending order using std::sort() from the C++ standard library.
+    Sorting allows us to identify adjacent elements with the same value more easily.
+    
+2. It initializes a variable count to keep track of the number of occurrences of the current element.
+
+3. If the size of nums is 1, it means there is only one element in the vector, which automatically becomes the majority element.
+   In this case, the code returns nums[0] as the result.
+   
+4. A loop is then executed from index 0 to nums.size() - 2 (excluding the last element), checking each element with its adjacent element.
+
+5. If the current element is not equal to its adjacent element, it means a new element has been encountered. In this case, count is reset to 0.
+
+6. Otherwise, if the current element is equal to its adjacent element, count is incremented.
+
+7. After incrementing count, the code checks if count is greater than or equal to nums.size() / 2.
+   If it is, it means the current element is the majority element, and it is returned as the result.
+   
+8. Additionally, the code outputs the elements in the vector during the loop (excluding the last element) using cout. This seems to be for debugging purposes.
+
+9. If no majority element is found after the loop, the code returns 0 as the result.
+
+
+Complexity:
+
+The time complexity of the provided code is O(n log n), where n is the size of the input vector nums. This is because the code uses std::sort() to sort the vector, which has a time complexity of O(n log n). The subsequent loop has a linear time complexity of O(n), so it becomes dominated by the sorting operation.
+
+The space complexity of the provided code is O(1) since it does not use any additional space that scales with the input size. It performs the sorting in-place and only uses a constant amount of extra space for the count variable.
+ 
+ 
+ 
+ 
+ class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        sort(nums.begin(),nums.end());
+        int count = 0;
+        if(nums.size()==1){
+            return nums[0];
+        }
+        for(int i=0;i<nums.size()-1;i++){
+            if(nums[i]!=nums[i+1]){
+                count=0;
+            }
+            else{
+                count++;
+            }
+            if(count>=(nums.size()/2)){
+                return nums[i];
+            }
+            cout<<nums[i]<<" ";
+        }
+        return 0;
+    }
+};
