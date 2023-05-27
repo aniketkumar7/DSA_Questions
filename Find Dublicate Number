@@ -1,0 +1,38 @@
+APPROACH 1 USING BINARY SEARCH
+ALGORITHM
+
+1. Perform Binary Search on range 1 to n;
+2. low = 1, high = nums.size() - 1;
+3 While the value of high is greater than or equal to low.
+4. calculate mid.
+5. count elements <= to mid.
+6. if count is less than equal to mid.
+7. low = mid + 1 (binary search on right half)
+8. else high = mid + 1 (binary search on left half)
+9. Return low which will point to duplicate.
+
+
+// 😉😉😉😉 Lets do it  😉😉😉😉
+
+class Solution {
+public:
+    int findDuplicate(vector<int>& nums) {
+        int count = 0;
+		
+		// sort the vector
+        sort(nums.begin(),nums.end());
+        for(int i = 0; i < nums.size() - 1; i++)
+        {
+			// if two consecutive elements are equal
+			// you have find a duplicate
+			// break the loop
+            if(nums[i] == nums[i+1])
+            {
+                count = nums[i];
+                break;
+            }
+        }
+        // return duplicate value
+        return count;
+    }
+};
