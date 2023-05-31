@@ -1,0 +1,35 @@
+Intuition:
+
+This solution is based on the bubble sort algorithm, which is a simple sorting algorithm that repeatedly steps through the list to be sorted,
+compares adjacent elements and swaps them if they are in the wrong order. 
+The algorithm gets its name from the way smaller elements "bubble" to the top of the list.
+
+Approach:
+
+1.  Traverse the array from the end to the beginning with a loop variable 'i'.
+2.  For each iteration of the outer loop, traverse the array from the beginning to 'i-1' with a loop variable 'j'.
+3.  Compare adjacent elements and swap them if they are in the wrong order, i.e., if nums[j]>nums[j+1].
+4.  Repeat steps 2-3 for all iterations of the outer loop, until the array is sorted in ascending order.
+5.  The resulting array will be sorted in non-decreasing order.
+
+
+Complexity:
+
+1.  The time complexity of this algorithm is O(n^2), where 'n' is the length of the input array. This is because we are using nested loops to traverse the array.
+2.  The space complexity of this algorithm is O(1), because we are not using any extra space and we are sorting the input array in-place.
+
+
+class Solution {
+public:
+    void sortColors(vector<int>& nums) {
+        for(int i=nums.size()-1;i>0;i--){
+            for(int j=0;j<=i-1;j++){
+                if(nums[j]>nums[j+1]){
+                    int temp = nums[j+1];
+                    nums[j+1]=nums[j];
+                    nums[j]=temp;
+                }
+            }
+        }
+    }
+};
