@@ -1,0 +1,63 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+/**
+ * The function finds the second smallest and second largest elements in an array.
+ * 
+ * @param arr an integer array containing the elements for which we need to find the second smallest
+ * and second largest elements.
+ * @param n The number of elements in the array.
+ */
+
+void getElements(int arr[],int n)
+{
+    if(n==0 || n==1)
+        cout<<-1<<" "<<-1<<endl;  // edge case when only one element is present in array
+    int small=INT_MAX,second_small=INT_MAX;
+    int large=INT_MIN,second_large=INT_MIN;
+
+   /* This code block is finding the smallest and largest elements in the array `arr`. It iterates
+   through the array and checks if the current element is smaller than the current `small` element.
+   If it is, the `small` variable is updated with the current element. Similarly, it checks if the
+   current element is larger than the current `large` element. If it is, the `large` variable is
+   updated with the current element. */
+
+    int i;
+    for(i=0;i<n;i++)
+    {
+        small=min(small,arr[i]);
+        large=max(large,arr[i]);
+    }
+
+   /* This code block is finding the second smallest and second largest elements in the array `arr`. It
+   iterates through the array and checks if the current element is smaller than the current
+   `second_small` element and not equal to the smallest element `small`. Similarly, it checks if the
+   current element is larger than the current `second_large` element and not equal to the largest
+   element `large`. If either of these conditions is true, the corresponding variable is updated
+   with the current element. */
+
+    for(i=0;i<n;i++)
+    {
+        if(arr[i]<second_small && arr[i]!=small)
+            second_small=arr[i];
+        if(arr[i]>second_large && arr[i]!=large)
+            second_large=arr[i];
+    }
+
+    cout<<"Second smallest is "<<second_small<<endl;
+    cout<<"Second largest is "<<second_large<<endl;
+}
+
+
+/**
+ * The main function initializes an array and calls the getElements function.
+ * 
+ * @return The main function is returning an integer value of 0.
+ */
+int main()
+{
+    int arr[]={1,2,4,6,7,5};
+    int n=sizeof(arr)/sizeof(arr[0]);
+    getElements(arr,n);
+    return 0;
+}
